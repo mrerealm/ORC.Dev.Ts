@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    @model Orchard.Net.Dev.Test.Models.UserViewModel
+}
+
+<script src="~/Scripts/Apps/Posts/postApp.js"></script>
+<script src="~/Scripts/Apps/Posts/postServices.js"></script>
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row ng-cloak" ng-app="postsApp" ng-controller="posts.Ctrl" ng-init="displayTimer = false; init(@Model.Id)" ng-cloak">
+    <div class="col-md-4">
+        <h2>Welcome {{user.username}}</h2>
+    </div>
+    <div class="col-md-4">
+        <h2>Posts 
+            <img src="http://intown.biz/demo/wait/waiting.gif"  ng-show="displayTimer"/></h2>
+        <div>
+            <ul>
+                <li ng-repeat="p in posts | limitTo:-5 | orderBy:'id':true"">({{p.id}}) - {{p.title}}</li>
+            </ul>
+        </div>
+       
+        <div class="alert-info" ng-show="lastPost">No more posts.</div>
+        <button class="btn btn-primary" ng-click="previousPage()" ng-show="!lastPost">Older Posts</button>
+        <button class="btn btn-primary" ng-click="nextPage()" ng-show="lastPost">Most Recent</button>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
